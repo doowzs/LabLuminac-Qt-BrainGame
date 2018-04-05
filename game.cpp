@@ -1,5 +1,6 @@
 #include "home.h"
 #include "game.h"
+#include "result.h"
 #include "ui_game.h"
 #include <ctime>
 #include <QMessageBox>
@@ -9,7 +10,7 @@
 #include <QtMultimedia>
 #include <QTimer>
 
-QTimer *mainTimer, *problemTimer;
+QTimer *mainTimer;
 
 Game::Game(QWidget *parent) :
   QMainWindow(parent),
@@ -19,23 +20,26 @@ Game::Game(QWidget *parent) :
   connect(ui->answer, SIGNAL(returnPressed()), this, SLOT(submitAnswer()));
 
   mainTimer = new QTimer();
-  problemTimer = new QTimer();
   connect(mainTimer, SIGNAL(timeout()), this, SLOT(countDown()));
 }
 
 Game::~Game()
 {
   delete mainTimer;
-  delete problemTimer;
   delete ui;
 }
 
 void Game::gameStart() {
+    score = 0;
+    combo = 0;
     problemCount = 0;
-    totalTime = 60 + 2 * level;
+    totalTime = 2 * level;
     mainTimer->setInterval(1000);
     mainTimer->start();
+
+    ui->score->display(QString::number(score));
     ui->timeleft->display((int)totalTime);
+
     for (int i = 0; i < level; i++) {
         generateQuestion();
 
@@ -43,27 +47,40 @@ void Game::gameStart() {
         while(QTime::currentTime()<reachTime)
             QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
+
+    totalTime += 60;
+    ui->timeleft->display((int)totalTime);
     generateQuestion();
     ui->answer->setEnabled(true);
-    ui->answer->setPlaceholderText(QString("回答"));
+    ui->answer->setPlaceholderText(QString("作答"));
     ui->answer->setFocus();
+    inGame = true;
 }
 
 void Game::submitAnswer(){
     ui->answer->setEnabled(false);
     if (!ui->answer->text().isEmpty()
             && ui->answer->text().toInt() == ans.front()) {
+        combo++;
+        score += combo;
+        ui->score->setText(QString::number(score));
+
         ui->answer->setPlaceholderText(QString("正确"));
         ui->result->setPixmap(QPixmap(":/Resources/correct.png"));
+
+        QMediaPlayer *music = new QMediaPlayer();
+        music->setMedia(QUrl("qrc:/Resources/correct.wav"));
+        music->setVolume(50);
+        music->play();
     } else {
+        combo = 0;
         ui->answer->setPlaceholderText(QString::number(ans.front()));
         ui->result->setPixmap(QPixmap(":/Resources/wrong.png"));
 
         QMediaPlayer *music = new QMediaPlayer();
-        music->setMedia(QUrl("qrc:/Resources/FAQ.wav"));
+        music->setMedia(QUrl("qrc:/Resources/wrong.wav"));
         music->setVolume(50);
         music->play();
-
     }
 
     ui->num31->setText(QString::number(num1.front()));
@@ -131,8 +148,32 @@ void Game::generateQuestion() {
 
 void Game::countDown() {
     totalTime--;
-    if(totalTime < 0){
+    if(inGame && totalTime < 0){
+        inGame = false;
         this->close();
+        num1.clear();
+        num2.clear();
+        isAdd.clear();
+        ans.clear();
+        ui->answer->setEnabled(false);
+
+        QMediaPlayer *music = new QMediaPlayer();
+        music->setMedia(QUrl("qrc:/Resources/correct.wav"));
+        music->setVolume(50);
+        music->play();
+
+        QString result = QString("尻♂试结束，您的成绩是")
+                + QString::number(score) + QString("分。\n");
+        if (score >= 80) {
+            result = result + QString("恭喜你，尻♂试成功！");
+        } else {
+            result = result + QString("您的成绩不合格，请继续努力！");
+        }
+        Result msgResult;
+        msgResult.showResult(result);
+        msgResult.show();
+        msgResult.exec();
+        emit gameOver();
     }
     ui->timeleft->display((int)totalTime);
 }

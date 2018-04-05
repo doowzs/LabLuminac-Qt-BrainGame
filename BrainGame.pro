@@ -28,18 +28,21 @@ SOURCES += \
         main.cpp \
         home.cpp \
         game.cpp \
-    init.cpp
+    init.cpp \
+    result.cpp
 
 HEADERS += \
     init.h \
     sleep.h \
     game.h \
-    home.h
+    home.h \
+    result.h
 
 FORMS += \
         home.ui \
         game.ui \
-    init.ui
+    init.ui \
+    result.ui
 
 DISTFILES +=
 

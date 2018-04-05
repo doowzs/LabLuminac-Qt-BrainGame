@@ -3,6 +3,7 @@
 
 #include "game.h"
 #include <QMainWindow>
+#include <QtMultimedia>
 
 namespace Ui {
   class Home;
@@ -19,11 +20,13 @@ public:
 
 public slots:
   void playGame();
+  void endGame();
 
 private:
   Ui::Home *ui;
   bool gameOn = false;
   Game gayme;
+  QMediaPlayer *music;
 };
 
 #endif // HOME_AND_GAME_H

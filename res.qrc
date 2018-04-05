@@ -8,5 +8,9 @@
         <file>Resources/correct.png</file>
         <file>Resources/wrong.png</file>
         <file>Resources/background.png</file>
+        <file>Resources/correct.wav</file>
+        <file>Resources/wrong.wav</file>
+        <file>Resources/homemenu.mp3</file>
+        <file>Resources/result.png</file>
     </qresource>
 </RCC>
