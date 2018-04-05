@@ -27,15 +27,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         home.cpp \
-        game.cpp
+        game.cpp \
+    init.cpp
 
 HEADERS += \
-        home.h \
-        game.h
+    init.h \
+    sleep.h \
+    game.h \
+    home.h
 
 FORMS += \
         home.ui \
-        game.ui
+        game.ui \
+    init.ui
 
 DISTFILES +=
 

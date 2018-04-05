@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>Resources/FAQ.wav</file>
+        <file>Resources/loading.png</file>
+        <file>Resources/calculation.png</file>
+        <file>Resources/game.png</file>
+        <file>Resources/yeah.gif</file>
+        <file>Resources/correct.png</file>
+        <file>Resources/wrong.png</file>
+        <file>Resources/background.png</file>
     </qresource>
 </RCC>

@@ -1,6 +1,7 @@
-#ifndef HOME_H
-#define HOME_H
+#ifndef HOME_AND_GAME_H
+#define HOME_AND_GAME_H
 
+#include "game.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -13,6 +14,7 @@ class Home : public QMainWindow
 
 public:
   explicit Home(QWidget *parent = 0);
+  bool init();
   ~Home();
 
 public slots:
@@ -21,6 +23,7 @@ public slots:
 private:
   Ui::Home *ui;
   bool gameOn = false;
+  Game gayme;
 };
 
-#endif // HOME_H
+#endif // HOME_AND_GAME_H

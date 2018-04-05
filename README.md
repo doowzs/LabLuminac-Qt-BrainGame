@@ -2,7 +2,7 @@
 Trying to make a simple "remaster" of a brain training game on 3DS with Qt5.
 
 ## Progress
-1%. Only the basic calculation challenge is finished.
+5%. Only the basic game implemention is done.
 Maybe I will develop further after finishing problem solving homework.
 
 ## Original game
