@@ -18,8 +18,11 @@ Init::Init(QWidget *parent) :
     //init();
     img->load(":/Resources/loading.png");
     *img = img->scaled(70, 70);
-    //img->scaled(*size, Qt::KeepAspectRatio);
     ui->icon->setPixmap(QPixmap::fromImage(*img));
+
+    background->load(":/Resources/init_background.png");
+    *background = background->scaled(600, 406, Qt::KeepAspectRatio);
+    ui->background->setPixmap(QPixmap::fromImage(*background));
 
     timer = new QTimer;
     timer->setInterval(100);
@@ -46,14 +49,23 @@ void Init::rotate(){
 
 bool Init::init(){
     mysleep(300);
+    ui->progressBar->setValue(0);
+
     startConnect();
     mysleep(300);
+    ui->progressBar->setValue(25);
+
     establishConnect();
     mysleep(300);
+    ui->progressBar->setValue(50);
+
     login();
     mysleep(300);
+    ui->progressBar->setValue(75);
+
     getData();
     mysleep(300);
+    ui->progressBar->setValue(100);
     return true;
 }
 

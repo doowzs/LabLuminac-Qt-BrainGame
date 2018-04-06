@@ -27,6 +27,7 @@ private:
   bool gameOn = false;
   Game gayme;
   QMediaPlayer *music;
+  QMediaPlaylist *list;
 };
 
 #endif // HOME_AND_GAME_H

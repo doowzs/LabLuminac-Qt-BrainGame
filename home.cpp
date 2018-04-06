@@ -12,10 +12,13 @@ Home::Home(QWidget *parent) :
   ui->setupUi(this);
   ui->pushButton->setFocus();
   connect(ui->pushButton, SIGNAL(clicked(bool)), this, SLOT(playGame()));
-  connect(&gayme, SIGNAL(gameOver()), this, SLOT(endGame()));
+  connect(&gayme, SIGNAL(sGameOver()), this, SLOT(endGame()));
 
   music = new QMediaPlayer();
-  music->setMedia(QUrl("qrc:/Resources/homemenu.mp3"));
+  list = new QMediaPlaylist();
+  list->addMedia(QUrl("qrc:/Resources/kaoshimusic.wav"));
+  list->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
+  music->setPlaylist(list);
   music->setVolume(5);
 }
 
@@ -38,13 +41,12 @@ Home::~Home()
 
 void Home::playGame(){
   if(gameOn){
-    QMessageBox::information(this,QString("错误"),QString("游戏已经开始"));
+    QMessageBox::information(this,QString("错误"),QString("尻♂试已经开始！"));
   } else {
     gameOn = true;
     music->stop();
     this->close();
     gayme.show();
-    gayme.gameStart();
   }
 }
 

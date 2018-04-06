@@ -14,32 +14,36 @@ class Game : public QMainWindow
   Q_OBJECT
 
 signals:
-  void gameOver();
+  void sGameOver();
 
 public slots:
+  void gameStart();
   void submitAnswer();
   void countDown();
+  void giveUp();
 
 public:
   explicit Game(QWidget *parent = 0);
-  void gameStart();
   ~Game();
 
 private:
   Ui::Game *ui;
   int score = 0;
   int combo = 0;
-  int totalTime = 0;
+  double totalTime = 0;
   int problemCount = 0;
   int level = 2;
-  int tmp1 = 0, tmp2 = 0;
-  bool tmp3 = false;
+  int difficulty = 1;
+  int tmp1 = 0;
+  bool tmp2 = 0;
+  int tmp3 = 0;
   bool inGame = false;
   QQueue<int> num1;
   QQueue<int> num2;
   QQueue<bool> isAdd;
   QQueue<int> ans;
   void generateQuestion();
+  void gameOver();
 };
 
 #endif // GAME_H

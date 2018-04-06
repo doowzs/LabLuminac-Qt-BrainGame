@@ -28,6 +28,7 @@ private:
     int xdegree = 0;
     QSize *size = new QSize(70, 70);
     QImage *img = new QImage;
+    QImage *background = new QImage;
     QMatrix *mtrx = new QMatrix;
     QImage *imgx = new QImage;
     void startConnect();

@@ -10,7 +10,13 @@
         <file>Resources/background.png</file>
         <file>Resources/correct.wav</file>
         <file>Resources/wrong.wav</file>
-        <file>Resources/homemenu.mp3</file>
         <file>Resources/result.png</file>
+        <file>Resources/init_background.png</file>
+        <file>Resources/start.png</file>
+        <file>Resources/stop.png</file>
+        <file>Resources/attentiongo.wav</file>
+        <file>Resources/kaoshimusic.wav</file>
+        <file>Resources/homemenu.mp3</file>
+        <file>Resources/game_background.png</file>
     </qresource>
 </RCC>
