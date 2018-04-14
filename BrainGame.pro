@@ -7,6 +7,7 @@
 QT       += core gui
 QT       += multimedia multimediawidgets
 CONFIG   += resources_big
+CONFIG   += staticlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

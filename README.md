@@ -2,7 +2,9 @@
 Trying to make a simple "remaster" of a brain training game on 3DS with Qt5.
 
 ## Progress
-6%. Only the basic game implemention is done.
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+
+10%. Only the basic game implemention is done.
 Maybe I will develop further after finishing problem solving homework.
 
 ## Original game
